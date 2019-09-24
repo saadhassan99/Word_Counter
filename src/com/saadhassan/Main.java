@@ -6,22 +6,10 @@ import java.util.Scanner;
 
 public class Main {
 
+
     public static void main(String[] args) throws FileNotFoundException {
         intro();
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println();
-        System.out.println("Please copy and paste the path of the paper from your computer here");
-
-        File file = new File(scanner.nextLine());
-
-        while (!file.exists()){
-
-            System.out.println("File does not exist. Please check your path and file name and try again");
-            file = new File(scanner.nextLine());
-
-        }
-
+        File file = paper();
         String paperPath = file.getPath();
         wordsCounter(paperPath);
         charactersCounter(paperPath);
@@ -36,6 +24,22 @@ public class Main {
         System.out.println("NOTE: The file should only be a text file ");
     }
 
+    public static File paper(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Please copy and paste the path of the paper from your computer here");
+
+        File file = new File(scanner.nextLine());
+
+        while (!file.exists()){
+
+            System.out.println("File does not exist. Please check your path and file name and try again");
+            file = new File(scanner.nextLine());
+
+        }
+
+        return file;
+    }
     public static void wordsCounter(String paperPath) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(paperPath));
         int counter = 0;
